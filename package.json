@@ -1,0 +1,41 @@
+{
+  "name": "gulp-ccr-postcss",
+  "version": "0.1.0",
+  "description": "Transforming styles with JS plugins. A cascading configurable gulp recipe for [gulp-chef](https://github.com/gulp-cookery/gulp-chef).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gulp-cookery/gulp-ccr-postcss.git"
+  },
+  "keywords": [
+    "gulp-cookery",
+    "gulp-chef",
+    "gulp 4.0",
+    "gulp",
+	"plugin",
+	"plugins",
+    "recipe",
+    "recipes",
+    "gulp-ccr",
+    "config",
+	"cascading",
+    "configure",
+    "configurable",
+    "configuration",
+	"configurations",
+    "CSS",
+    "PostCSS"
+  ],
+  "author": "Amobiz",
+  "bugs": {
+    "url": "https://github.com/gulp-cookery/gulp-ccr-postcss/issues"
+  },
+  "homepage": "https://github.com/gulp-cookery/gulp-ccr-postcss#readme",
+  "peerDependencies": {
+    "gulp-chef": "^0.1.0"
+  },
+  "dependencies": {
+    "gulp-postcss": "^6.0.1"
+  },
+  "license": "MIT"
+}
