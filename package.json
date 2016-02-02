@@ -1,7 +1,7 @@
 {
   "name": "gulp-ccr-postcss",
-  "version": "0.1.0",
-  "description": "Transforming styles with JS plugins. A cascading configurable gulp recipe for [gulp-chef](https://github.com/gulp-cookery/gulp-chef).",
+  "version": "0.1.1",
+  "description": "Transforming styles with JS plugins. A cascading configurable gulp recipe for gulp-chef.",
   "main": "index.js",
   "repository": {
     "type": "git",
