@@ -100,7 +100,7 @@ function _require(name) {
 	try {
 		return require(name);
 	} catch (ex) {
-		if (ex.code !== 'ENOENT') {
+		if (ex.code !== 'MODULE_NOT_FOUND') {
 			throw ex;
 		}
 		return require('postcss-' + name);
