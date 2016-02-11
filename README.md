@@ -124,7 +124,7 @@ var postcss = require('gulp-ccr-postcss');
 
 function css() {
     return postcss({
-        src: 'src/**/*.css',
+        src: 'app/**/*.css',
         processors: {
             cssnext: {
                 features: {
