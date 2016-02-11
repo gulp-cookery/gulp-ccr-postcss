@@ -43,7 +43,7 @@ Options to generate sourcemaps. False to disable sourcemaps; True to generate in
 ## Usage
 
 ``` bash
-$ npm install --save-dev "gulpjs/gulp#4.0" gulp-chef gulp-ccr-postcss autoprefixer cssnano cssnext precss
+$ npm install --save-dev "gulpjs/gulp#4.0" gulp-chef gulp-ccr-postcss postcss-cssnext cssnano precss
 ```
 
 ``` javascript
@@ -56,14 +56,13 @@ var meals = chef({
     postcss: {
         src: '**/*.css',
         processors: {
-            cssnext: '',
-            precss: '',
-            autoprefixer: {
-                browsers: ['last 1 version']
+            cssnext: {
+                features: {
+                    autoprefixer: { browsers: ['last 1 version'] }
+                }
             },
-            cssnano: {
-                safe: true
-            }
+			cssnano: { safe: true },
+            precss: ''
         },
         flatten: true,
         sourcemaps: './'
@@ -76,7 +75,7 @@ gulp.registry(meals);
 This roughly do the same thing as the following normal gulp construct:
 
 ``` bash
-$ npm install --save-dev "gulpjs/gulp#4.0" gulp-flatten gulp-sourcemaps gulp-if gulp-postcss autoprefixer cssnano cssnext precss
+$ npm install --save-dev "gulpjs/gulp#4.0" gulp-flatten gulp-sourcemaps gulp-if gulp-postcss postcss-cssnext cssnano precss
 ```
 
 ``` javascript
@@ -94,10 +93,13 @@ var config = {
 };
 
 var processors = [
-    require('cssnext'),
-    require('precss'),
-    require('autoprefixer')({ browsers: ['last 1 version'] }),
-    require('cssnano')({ safe: true })
+    require('postcss-cssnext')({
+        features: {
+            autoprefixer: { browsers: ['last 1 version'] }
+        }
+    }),
+	require('cssnano')({ safe: true }),
+    require('precss')
 ];
 
 function postcss() {
