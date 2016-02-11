@@ -44,13 +44,19 @@ function postcss() {
 	var flatten = require('gulp-flatten');
 	var sourcemaps = require('gulp-sourcemaps');
 
-	var gulp = this.gulp;
-	var config = this.config;
-	var map = typeof config.sourcemaps === 'boolean' ? null : config.sourcemaps;
-	var stream, processors;
+	var gulp, config, map, stream, processors;
+
+	if (this) {
+		gulp = this.gulp;
+		config = this.config;
+	} else {
+		gulp = require('gulp');
+		config = arguments[0] || {};
+	}
 
 	processors = load(config.processors);
-	stream = config.upstream || gulp.src(config.src.globs, config.src.options);
+	stream = config.upstream || gulp.src(config.src.globs || config.src, config.src.options);
+	map = typeof config.sourcemaps === 'boolean' ? null : config.sourcemaps;
 
 	if (config.sourcemaps) {
 		stream = stream.pipe(sourcemaps.init());
