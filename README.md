@@ -114,6 +114,34 @@ function postcss() {
 gulp.task(postcss);
 ```
 
+## Standalone
+
+Gulp-ccr-postcss can be used as a standalone function.
+
+``` javascript
+var gulp = require('gulp');
+var postcss = require('gulp-ccr-postcss');
+
+function css() {
+    return postcss({
+        src: 'src/**/*.css',
+        processors: {
+            cssnext: {
+                features: {
+                    autoprefixer: { browsers: ['last 1 version'] }
+                }
+            },
+			cssnano: { safe: true },
+            precss: '',
+        },
+        flatten: true,
+        sourcemaps: './'
+    });
+}
+
+gulp.task(css);
+```
+
 ## License
 MIT
 
