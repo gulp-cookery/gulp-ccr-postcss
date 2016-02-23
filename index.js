@@ -25,6 +25,10 @@ var schema = {
 			type: 'boolean',
 			default: false
 		},
+		syntax: {
+			description: 'Use a custom parser. Currently only supports `scss`, note that the `postcss-scss` plugin must be installed first.',
+			type: 'string'
+		},
 		sourcemaps: {
 			description: 'Source map support.',
 			alias: ['sourcemap'],
@@ -44,7 +48,7 @@ function postcss() {
 	var flatten = require('gulp-flatten');
 	var sourcemaps = require('gulp-sourcemaps');
 
-	var gulp, config, map, stream, processors;
+	var gulp, config, map, stream, processors, parser;
 
 	if (this) {
 		gulp = this.gulp;
@@ -62,7 +66,12 @@ function postcss() {
 		stream = stream.pipe(sourcemaps.init());
 	}
 
-	stream = stream.pipe(ps(processors));
+	if (config.syntax === 'scss') {
+		parser = require('postcss-scss');
+		stream = stream.pipe(ps(processors, { syntax: parser }));
+	} else {
+		stream = stream.pipe(ps(processors));
+	}
 
 	if (config.flatten) {
 		stream = stream.pipe(flatten());
