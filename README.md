@@ -44,6 +44,10 @@ Options to generate sourcemaps. False to disable sourcemaps; True to generate in
 
 Use a custom parser. Currently only supports `"scss"`, note that the [`postcss-scss`](https://github.com/postcss/postcss-scss) plugin must be installed first.
 
+### config.options
+
+Additional options to pass to postcss.
+
 ## Usage
 
 ``` bash
@@ -173,7 +177,7 @@ gulp.task(css);
 ```
 
 ## License
-MIT
+[MIT](https://opensource.org/licenses/MIT)
 
 ## Author
 [Amobiz](https://github.com/amobiz)

@@ -25,6 +25,9 @@ var schema = {
 			type: 'boolean',
 			default: false
 		},
+		options: {
+			description: 'Additional options to pass to postcss'
+		},
 		syntax: {
 			description: 'Use a custom parser. Currently only supports `scss`, note that the `postcss-scss` plugin must be installed first.',
 			type: 'string'
@@ -48,7 +51,7 @@ function postcss() {
 	var flatten = require('gulp-flatten');
 	var sourcemaps = require('gulp-sourcemaps');
 
-	var gulp, config, map, stream, processors, parser;
+	var gulp, config, map, stream, processors, options, parser;
 
 	if (this) {
 		gulp = this.gulp;
@@ -57,6 +60,7 @@ function postcss() {
 		gulp = require('gulp');
 		config = arguments[0] || {};
 	}
+	options = config.options || {};
 
 	processors = load(config.processors);
 	stream = config.upstream || gulp.src(config.src.globs || config.src, config.src.options);
@@ -68,10 +72,10 @@ function postcss() {
 
 	if (config.syntax === 'scss') {
 		parser = require('postcss-scss');
-		stream = stream.pipe(ps(processors, { syntax: parser }));
-	} else {
-		stream = stream.pipe(ps(processors));
+		options = Object.assign(options, { syntax: parser });
 	}
+
+	stream = stream.pipe(ps(processors, options));
 
 	if (config.flatten) {
 		stream = stream.pipe(flatten());
